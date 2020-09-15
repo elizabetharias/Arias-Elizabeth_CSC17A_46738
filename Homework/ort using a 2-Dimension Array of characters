@@ -1,0 +1,147 @@
+//sortStrings.cpp
+/*
+* functions are defined like in the question
+* colDet is the maximum string length in the input of strings
+* it should match with colIn
+*/
+//System Libraries Here
+#include <iostream>//cin,cout
+#include <cstring> //strlen(),strcmp(),strcpy()
+using namespace std;
+
+//User Libraries Here
+
+//Global Constants Only, No Global Variables
+//Allowed like PI, e, Gravity, conversions, array dimensions necessary
+const int COLMAX=80;//Only 20 required, and 1 for null terminator
+
+//Function Prototypes Here
+int read(char [][COLMAX],int &);//Outputs row and columns detected from input
+void sort(char [][COLMAX],int , int);//Sort by row
+void print(const char [][COLMAX],int,int);//Print the sorted 2-D array
+
+//This function inserts one "row" or a string of chars at a time into the 2D array
+int read(char array[][COLMAX],int &rowDet) //*rowDet points to an integer
+{
+   int i;
+   int rows = 0;
+   int cols = 0;
+   string horizInput;   //Holds each row of array as a string
+   int horizTerms;      //Holds number of chars in each "row" that is rep as a string
+   for(int i = 0; i< rowDet; i++) // while(!='\0')
+   {
+      // array takes in the row of the 2D array as a string
+       cin >> horizInput;
+       // This will give the number of chars in the string which will imply the # of columns
+       
+       
+       //horizTerms = horizInput.length();
+       //insert into array if and only if the length of the string is positive and less than the Maximum Length
+       if(horizTerms > 0 && horizTerms < COLMAX)
+       /*{
+           // Copy string that represents each row into the array
+           strcpy(array[rows],horizInput.c_str());*/
+      
+           rows++; //outside while loop
+           
+           array[rows][]; //another index to read columns
+           
+           /*//Sets num of col to length of longest string read in*/
+           if(horizTerms > cols)
+               {
+                   cols = horizTerms;
+               }
+       /*}
+       else
+       {
+           cout<< " Error Occured: Input String length should be > 0 and < "<< COLMAX << endl;
+       }*/
+   }
+   
+   return cols;
+}
+void sort(char array[][COLMAX],int rows, int col)
+{
+   int i,j;
+   char temp[col];
+   for(i = 0;i< rows;i++)
+   {
+       for(j = 0;j<rows-1;j++)
+       {
+           //string comparison on two strings
+           //if first is greater than the second then swap them
+           if(strcmp(array[j],array[j+1]) > 0)
+           {
+               strcpy(temp,array[j]);
+               strcpy(array[j],array[j+1]);
+               strcpy(array[j+1],temp);
+           }
+       }
+   }
+}
+void print(char array[][COLMAX],int rows,int cols)
+{
+   int i;
+   //print the array of strings
+   for(i =0;i<rows;i++)
+   {
+       printf("%s",array[i]);
+       cout<<endl;
+       
+   }
+
+   
+}
+//Program Execution Begins Here
+int main(int argc, char** argv)
+{
+   //Declare all Variables Here
+   const int ROW=30; //Only 20 required
+   char array[ROW][COLMAX]; //Bigger than necessary
+   int colIn,colDet,rowIn,rowDet;//Row, Col input and detected
+
+   //Input the size of the array you are sorting
+   cout<<"Read in a 2 dimensional array of characters and sort by Row"<<endl;
+   cout<<"Input the number of rows <= 20"<<endl;
+   cin>>rowIn;
+   cout<<"Input the maximum number of columns <=20"<<endl;
+   cin>>colIn;
+
+   //Now read in the array of characters and determine it's size
+   rowDet=rowIn;
+   cout<<"Now input the array."<<endl;
+  
+   //maximum string length in the given input of strings
+   //so whatever the colIn input is given one of the inputs length should of same as colIn
+   colDet=read(array,rowDet);
+  
+   //if the maximum length string in the input of strings is < the inputed colIn
+   //make them equal
+
+
+   if(colDet <= colIn)
+   {
+       colDet = colIn;
+   }
+   //Compare the size input vs. size detected and sort if same
+   //Else output different size
+   if(rowDet==rowIn&&colDet==colIn)
+   {
+       sort(array,rowIn,colIn); ///Sort with the physically typed in row and col
+       cout<<"The Sorted Array" << endl;
+       print(array,rowIn,colIn);
+   }
+   else
+   {
+       if(rowDet!=rowIn)
+       cout<<(rowDet<rowIn?"Row Input size less than specified.":
+       "Row Input size greater than specified.")<<endl;
+       if(colDet!=colIn)
+       cout<<(colDet<colIn?"Column Input size less than specified.":
+       "Column Input size greater than specified.")<<endl;
+   }
+
+   //Exit
+   return 0;
+}
+
