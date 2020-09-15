@@ -21,45 +21,39 @@ void sort(char [][COLMAX],int , int);//Sort by row
 void print(const char [][COLMAX],int,int);//Print the sorted 2-D array
 
 //This function inserts one "row" or a string of chars at a time into the 2D array
-int read(char array[][COLMAX],int &rowDet) //*rowDet points to an integer
+int read(char array[][COLMAX],int &rowDet)
 {
    int i;
    int rows = 0;
    int cols = 0;
    string horizInput;   //Holds each row of array as a string
    int horizTerms;      //Holds number of chars in each "row" that is rep as a string
-   for(int i = 0; i< rowDet; i++) // while(!='\0')
-   {
-      // array takes in the row of the 2D array as a string
+         
+         // array takes in the row of the 2D array as a string
        cin >> horizInput;
        // This will give the number of chars in the string which will imply the # of columns
-       
-       
-       //horizTerms = horizInput.length();
-       //insert into array if and only if the length of the string is positive and less than the Maximum Length
-       if(horizTerms > 0 && horizTerms < COLMAX)
-       /*{
+     
+       while(horizInput!= '\0')
+   {
+
            // Copy string that represents each row into the array
-           strcpy(array[rows],horizInput.c_str());*/
+           strcpy(array[rows],horizInput.c_str());
       
-           rows++; //outside while loop
+           //Sets num of col to length of longest string read in
+           horizTerms = horizInput.length();
+           if(horizTerms > col)
+           {
+           col = horizTerms;
+           }
+             
+           //array[rows][]; //another index to read columns
            
-           array[rows][]; //another index to read columns
            
-           /*//Sets num of col to length of longest string read in*/
-           if(horizTerms > cols)
-               {
-                   cols = horizTerms;
-               }
-       /*}
-       else
-       {
-           cout<< " Error Occured: Input String length should be > 0 and < "<< COLMAX << endl;
-       }*/
    }
-   
+   rows++; //outside while loop
    return cols;
 }
+
 void sort(char array[][COLMAX],int rows, int col)
 {
    int i,j;
