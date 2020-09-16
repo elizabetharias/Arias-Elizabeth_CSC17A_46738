@@ -23,37 +23,41 @@ void print(const char [][COLMAX],int,int);//Print the sorted 2-D array
 //This function inserts one "row" or a string of chars at a time into the 2D array
 int read(char array[][COLMAX],int &rowDet)
   {
-         int i;
-         int rows = 0;
          int cols = 0;
-         string horizInput;   //Holds each row of array as a string
-         int horizTerms;      //Holds number of chars in each "row" that is rep as a string
+         string input;   //Holds each row of array as a string
+         int numTerms;      //Holds number of chars in each "row" that is rep as a string
 
             // array takes in the row of the 2D array as a string
-          cin >> horizInput;
+          cin >> input;
 
           //Sets the num of col to length of longest string read in
-           horizTerms = horizInput.length();
+           numTerms = input.length();
+           
+       for(int rows=0; rows < rowDet; rows++) 
+        {
 
-          while(array[rows][COLMAX] != '\0')
-      {
-
-              // Copy string that represents each row into the array
-              strcpy(array[rows],horizInput.c_str());
-
-              if(horizTerms > cols)
-              {
-               cols = horizTerms;
-              }
-              else
-               {
-                cout<<"Error Occured: Input String length should be > 0 and < "<< COLMAX << endl;
-               }
-
-      }
-         rowDet =+ rows; //outside while loop
-       return cols;
-   
+              while(array[rows][cols] != '\0') //as long as the string has not reached the end \0 keep loading every char into arr
+          {
+    
+                  // Copy string that represents each row into the array
+                  //strcpy(array[rows],horizInput.c_str());
+                  
+                  array[rows][cols]= input[cols]; //take each char of string and place into cols' indexes
+    
+                  /*if(input > cols)
+                  {
+                   cols = numTerms;
+                  }
+                  else
+                   {
+                    cout<<"Error Occured: Input String length should be > 0 and < "<< COLMAX << endl;
+                   }*/
+                cols++;
+          }
+         
+           return cols;
+       
+        }
 }
 
 void sort(char array[][COLMAX],int rows, int col)
@@ -104,7 +108,7 @@ int main(int argc, char** argv)
    cin>>colIn;
 
    //Now read in the array of characters and determine it's size
-   rowDet=rowIn;
+   rowDet=rowIn; //??????????????????
    cout<<"Now input the array."<<endl;
   
    //maximum string length in the given input of strings
