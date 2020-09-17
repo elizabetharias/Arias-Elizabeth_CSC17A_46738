@@ -1,0 +1,99 @@
+/* 
+ * Purpose:  Searching for multiple occurrence of patterns
+ * Note:  cout proceeds to null terminator, cin reads to end of line
+ *        for character arrays
+ * 
+ */
+
+//System Libraries Here
+#include <iostream>//cin,cout,getline()
+#include <cstring> //strlen()
+using namespace std;
+
+//User Libraries Here
+
+//Global Constants Only, No Global Variables
+//PI, e, Gravity, or conversions
+
+//Function Prototypes Begins Here
+//srch1 utility function Input->start position, Output->position found or not
+//srch1 is a simple linear search function, repeat in srchAll till all found
+//srch1 Input->sentence, pattern, start position Output-> position found
+//Remember arrays start at index/position 0
+//srchAll Input->sentence, pattern Output->position array
+int  srch1(const char [],const char [],int);//Search for 1 occurrence
+void srchAll(const char [],const char [],int []);//Search for all occurrences
+//void print(const char []);//Print the character arrays
+//void print(const int []); //Print the array of indexes where the pattern found
+
+//Program Execution Begins Here
+int main(int argc, char** argv) {
+    //Declare all Variables Here
+    const int LINE=81;               //Size of sentence or pattern to find
+    char sntnce[LINE],pattern[LINE]; //80 + null terminator
+    int match[LINE];                 //Index array where pattern was found
+    
+    //Input a sentence and a pattern to match
+    cout<<"Match a pattern in a sentence."<<endl;
+    cout<<"Input a sentence"<<endl;
+    cin.getline(sntnce,LINE);
+    cout<<"Input a pattern."<<endl;
+    cin.getline(pattern,LINE); //input what user wants to arr pattern and LINE is just a limit
+    
+    //Search for the pattern
+    //Input the sentence and pattern, Output the matching positions
+    //Remember, indexing starts at 0 for arrays.
+    //srchAll(sntnce,pattern,match);
+    
+    //Display the inputs and the Outputs
+    cout<<endl<<"The sentence and the pattern"<<endl;
+    //print(sntnce);
+    //print(pattern);
+    cout<<"The positions where the pattern matched"<<endl;
+    //print(match);
+    
+    //Exit
+    return 0;
+}
+
+int srch1(const char sen[],const char patt[],int start) //start is where you begin to search in the sentence
+{
+    //go through array sentence and search for pattern
+  for(int i=start; i<strlen(patt); i++) //controls how much of the sentence to search for
+  {
+      bool compare = true;
+      for(int j=0; j < strlen(patt); j++) //search for one match
+      {
+          if(compare) //check if compare still holds true from before
+          {
+             return i; //return the first position of the pattern
+          }
+            
+            else
+               if(sen[i+j] != patt[j]) //rule to break out of loop
+                {
+                    compare = false;
+                    break;
+                }
+      }
+  }
+  
+  return -1;
+}
+
+/*void print(const int sen[])
+{
+    cout << strnlen(sen[]);
+}
+
+void prntAry(int array[],int n,int perLine){
+    cout<<endl;
+    for(int i=0;i<n;i++)
+    {
+        if(i%perLine==(perLine-1))cout<<endl; 
+    }
+    cout<<endl;
+}*
+
+
+
