@@ -22,9 +22,9 @@ using namespace std;
 //Remember arrays start at index/position 0
 //srchAll Input->sentence, pattern Output->position array
 int  srch1(const char [],const char [],int);//Search for 1 occurrence
-void srchAll(const char [],const char [],int []);//Search for all occurrences
-//void print(const char []);//Print the character arrays
-//void print(const int []); //Print the array of indexes where the pattern found
+//void srchAll(const char [],const char [],int []);//Search for all occurrences
+void print(const char []);//Print the character arrays
+void print(const int []); //Print the array of indexes where the pattern found
 
 //Program Execution Begins Here
 int main(int argc, char** argv) {
@@ -47,10 +47,10 @@ int main(int argc, char** argv) {
     
     //Display the inputs and the Outputs
     cout<<endl<<"The sentence and the pattern"<<endl;
-    //print(sntnce);
-    //print(pattern);
+    print(sntnce);
+    print(pattern);
     cout<<"The positions where the pattern matched"<<endl;
-    //print(match);
+    print(match);
     
     //Exit
     return 0;
@@ -81,19 +81,30 @@ int srch1(const char sen[],const char patt[],int start) //start is where you beg
   return -1;
 }
 
-/*void print(const int sen[])
-{
-    cout << strnlen(sen[]);
-}
 
-void prntAry(int array[],int n,int perLine){
+
+/*void prntAry(int array[],int n,int perLine){
     cout<<endl;
     for(int i=0;i<n;i++)
     {
         if(i%perLine==(perLine-1))cout<<endl; 
     }
     cout<<endl;
-}*
+}*/
 
+
+void print(const char sntnce[])
+{
+    int len = strlen(sntnce);
+    for(int x=0;x<len;++x)
+        cout << sntnce[x];
+    cout << endl;
+}
+
+void print(const int match[])
+{
+    for(int x=0;x<81;++x)
+        cout << match[x] << endl;
+}
 
 
