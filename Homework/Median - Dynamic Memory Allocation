@@ -49,10 +49,12 @@ float *median(int * array, int size)
     
     float * arr = new float [size+2];
     
+    //Start loading two indices ahead
     for(int i=2; i<size+2; i++)
     {
+        //Fill the median array with elements from int array and turn them into floats
         arr[i] = static_cast<float>(array[i-2]); //static_cast because we're loading int array to float arr
-        //cout << arr[i];
+       // cout << arr[i];
     }
     
     for(int i=0;i<size-1;i++)
@@ -70,20 +72,30 @@ float *median(int * array, int size)
         }
     }
     
-    if(size%2 == 0) //if even
+    if(size%2 == 0) //if even sized array
     {
        median  = static_cast<float>((array[(size-1)/2]+array[size/2]))/2;
     }
     
-    if else(size%)
+    else //if odd sized array
     {
+        median = static_cast<float>(array[size/2]);
+    }
+    
+    //load in size as an int to first index of float array
+    
+        arr[0] = static_cast<int>(size+2);
         
+        //load in median to second index of float array
+        arr[1] = median;
+    }
+    
+    for(int i=0; i<size+2; i++)
+    {
+        cout << arr[i];
     }
     
 return arr;
 }   
     
-  /*  if(size is odd)
-    {
-        median = (size/2)
-    }*/
+  
