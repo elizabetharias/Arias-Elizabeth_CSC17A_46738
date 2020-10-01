@@ -1,0 +1,83 @@
+#include <iostream>
+
+using namespace std;
+
+int *getData(int &);//Read the array
+int *augment(const int *,int);//Augment and copy the original array
+void prntAry(const int *,int);//Print the array
+
+int main()
+{
+    int size;
+    int * ogArr; //To catch pointer to array
+    int * modArr; //To catch augmented array
+    
+	//your code here
+	 ogArr = getData(size);
+	 modArr = augment(ogArr,size);
+	 prntAry(modArr, size);
+	
+	return 0;
+	
+}
+
+int *getData(int &size)
+{
+    int *array = new int[size];
+  
+    cin >> size;
+    
+    for(int i=0; i<size; i++)
+    {
+      cin >> array[i];
+    }
+    
+
+    for(int i=0; i<size; i++)
+    {
+        cout << array[i];
+        
+        if(i<size-1)
+        {
+            cout << " ";
+        }
+    }
+    
+    cout << endl;
+    return array;
+    delete [] array;
+}
+
+    
+int *augment(const int * array, int size)
+    {
+        int * augArr = new int[size+1];
+        augArr[0] = 0; //Fill index one with 0
+        
+        int j = 0;
+        for(int i=1; i<size+1; i++)
+        {
+           augArr[i] = array[j];
+            j++;
+        }
+        
+         
+        return augArr;
+        delete [] augArr;
+       
+    }
+    
+void prntAry(const int * augArr,int size)
+{
+    for(int i=0; i<size+1; i++)
+    {
+        cout << augArr[i];
+        
+        if(i<size)
+        {
+            cout << " ";
+        }
+    }
+
+}
+
