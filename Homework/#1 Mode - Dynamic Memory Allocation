@@ -237,7 +237,8 @@ int *mode(const int *array,int arySize){
     //Fill the mode array
    for(int i =0; i<10; i++)
     {
-        if(tempAr[i]==maxNum)
+        
+        tempAr[i]==maxNum;
         {
         modeAry[j] = i;//fill modeAry 
         j++;
