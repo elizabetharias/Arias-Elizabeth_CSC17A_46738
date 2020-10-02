@@ -2,25 +2,29 @@
 #include <iomanip>
 
 int *getData(int &); //Return the array size and the array
-void prntData(int &);//Print the integer array
+void prntData(int *, int);//Print the integer array
 float *median(int *, int);//Fill the median Array with the Float array size
-void prntMed(float *);
+void prntMed(float *, int);
 using namespace std;
 
 int main()
 {
-    int size;
+    int size; //size inputted by user
     int * arr; //catch pointer to array
     float * arrMed; //catch pointer to a float from median function
+
+    
     
 	//your code here
 	arr = getData(size); //load array we are returning
-	cout << size;
 /*	 for(int i=0; i<size; i++)
    {
       cout << arr[i]; //treat like regular arrray here
    }*/
+   prntData(arr, size);
 arrMed = median(arr, size);
+
+prntMed(arrMed, size);
 
 
 
@@ -83,22 +87,55 @@ float *median(int * array, int size)
         median = static_cast<float>(array[size/2]);
     }
     
-    //load in size as an int to first index of float array
+        //load in size as an int to first index of float array
     arr[0] = static_cast<int>(size+2);
     
     
     //load in median to second index of float array
    arr[1] = median;
-   
-   
-   cout << arr[0] << " ";
-   for(int i=1; i<size+1; i++)
-   {
-       cout << fixed<< setprecision(2) << arr[i] << " ";
-   }
-    
+ 
     
     return arr;
 }   
+
+void prntData(int * arr, int size)
+{
+    for(int i=0; i<size; i++)
+    {
+        cout << arr[i];
+        
+        if(i<size-1)
+        {
+            cout << " ";
+        }
+    }
+    
+    cout << endl;
+}
+
+void prntMed(float * arr, int size)
+{
+           
+  /*  //load in size as an int to first index of float array
+    arr[0] = static_cast<int>(size+2);
+    
+    
+    //load in median to second index of float array
+   arr[1] = median;*/
+   
+   
+   cout << arr[0] << " ";
+   for(int i=1; i<size+2; i++)
+   {
+       cout << fixed<< setprecision(2) << arr[i];
+       
+       if(i<size+1)
+       {
+           cout << " ";
+       }
+   }
+    
+}
+
     
   
